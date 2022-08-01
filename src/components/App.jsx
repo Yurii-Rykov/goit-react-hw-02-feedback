@@ -1,3 +1,5 @@
+import Feedback from "./feedback/feedback";
+
 export const App = () => {
   return (
     <div
@@ -10,7 +12,7 @@ export const App = () => {
         color: '#010101'
       }}
     >
-      React homework template
+      <Feedback initialGodd={0} initialNeutral={0} initialBad={0} initialTotal={0} initialPositive={0}/>
     </div>
   );
 };
