@@ -1,18 +1,48 @@
-import Feedback from "./feedback/feedback";
+import React from "react";
+import FeedbackOptions from "./feedbackOptions/FeedbackOptions";
+import Statistics from "./Statistics/Statistics"
+import Sections from "./Sections/Sections"
+import Notification from "./Notification/Notification"
 
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      <Feedback initialGodd={0} initialNeutral={0} initialBad={0} initialTotal={0} initialPositive={0}/>
+class App extends React.Component {
+
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  }
+
+  increment = (button) => {
+    this.setState(prevState => ({
+      [button]: prevState[button] + 1
+    }))
+  }
+
+  render () {
+    const total = this.state.good + this.state.neutral + this.state.bad;
+    const positiv = this.state.good / total * 100;
+
+   return (
+   <div className="container">
+        
+      <Sections title={'Please leave feedback'}>
+        <FeedbackOptions 
+          options={['good', 'neutral', 'bad']}
+          onLeaveFeedback={this.increment}/>
+       </Sections>
+
+
+       <Sections title={'Statistics'}>
+        {total !== 0  
+        ?
+        <Statistics onStateGood={this.state.good} onStateNeutral={this.state.neutral} 
+        onStateBad={this.state.bad} onTotal={total} onPositiv={positiv}/>
+        :
+         <Notification/>}
+       </Sections> 
+
     </div>
-  );
-};
+    )
+}};
+
+export default App;
