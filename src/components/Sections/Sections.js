@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types'
 
 const Sections = ({title, children}) => {
     return (
@@ -7,5 +8,10 @@ const Sections = ({title, children}) => {
           {children}
         </section>
     )
+}
+
+Sections.propTypes = {
+  title: PropTypes.string,
+  children: PropTypes.node.isRequired,
 }
 export default Sections;

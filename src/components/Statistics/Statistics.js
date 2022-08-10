@@ -1,5 +1,6 @@
 import React from "react";
 import s from './Statistics.module.css'
+import PropTypes from 'prop-types'
 
 class Statistics extends React.Component {
     
@@ -21,4 +22,11 @@ class Statistics extends React.Component {
     
 }
 
+Statistics.propTypes = {
+  onStateGood: PropTypes.number.isRequired,
+  onStateNeutral: PropTypes.number.isRequired,
+  onStateBad: PropTypes.number.isRequired,
+  onTotal: PropTypes.number.isRequired,
+  onPositiv: PropTypes.number.isRequired,
+}
 export default Statistics;
